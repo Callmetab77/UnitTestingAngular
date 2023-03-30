@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing"
+import { By } from "@angular/platform-browser";
 import { HeroComponent } from "./hero.component"
 
 describe('HeroComponent (shallow tests)', ()=>{
@@ -32,8 +33,14 @@ describe('HeroComponent (shallow tests)', ()=>{
       name: 'superDude2',
       strength: 4
     }
-
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('a').textContent).toContain('superDude2')
+
+    //debug element has a way  to access the directives like router link
+    let deA = fixture.debugElement.query(By.css('a'));
+
+    expect(deA.nativeElement.textContent).toContain('superDude2')
+
+    //expect(fixture.nativeElement.querySelector('a').textContent).toContain('superDude2')
+
   })
 })
